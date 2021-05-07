@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Deconews - AR</title>
+    <script
+      type="module"
+      src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"
+    ></script>
+  </head>
+  <body>
+    <style>
+      body {
+        font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        margin: 0;
+        padding: 0;
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+      }
+      model-viewer {
+        width: 100vw;
+        height: calc(100vh - 4rem);
+        --progress-bar-color: #fab10c;
+      }
+
+      model-viewer::shadow div.userInput:focus {
+        outline: none !important;
+      }
+
+      model-viewer#reveal {
+        --poster-color: transparent;
+      }
+      .logo {
+        position: absolute;
+        left: calc(50% - 80px);
+        top: 1rem;
+        width: 160px;
+        z-index: 1;
+      }
+    </style>
+    <img class="logo" src="images/logo.png" alt="Deconews" />
+    <model-viewer
+      poster="images/poster.webp"
+      src="models/silla_baked_v02.glb"
+      ar
+      ar-modes="webxr scene-viewer quick-look"
+      shadow-intensity="0.3"
+      shadow-softness="1"
+      alt="Silla Milo - AR - Deconews"
+      auto-rotate
+      camera-controls
+      onload="removeOutline()"
+    >
+    </model-viewer>
+
+    <script>
+      function removeOutline() {
+        document
+          .querySelector("body > model-viewer")
+          .shadowRoot.querySelector("div > div.userInput").style.outline =
+          "none";
+      }
+    </script>
+  </body>
+</html>
